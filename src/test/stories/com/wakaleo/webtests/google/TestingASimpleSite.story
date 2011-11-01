@@ -6,7 +6,7 @@ import com.wakaleo.webtests.google.requirements.Application.Search.SearchByFoodR
 
 using "thucydides"
 
-thucydides.uses_default_base_url "http://www.google.com"
+thucydides.uses_default_base_url "http://www.google.co.nz"
 thucydides.uses_steps_from EndUserSteps
 thucydides.tests_story SearchByFoodRelatedKeyword
 
