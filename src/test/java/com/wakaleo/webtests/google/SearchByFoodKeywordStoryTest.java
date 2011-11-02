@@ -27,11 +27,11 @@ public class SearchByFoodKeywordStoryTest {
     public EndUserSteps endUser;
 
     @Test
-    public void searching_by_keyword_guava_should_display_the_corresponding_article() {
+    public void searching_by_keyword_apples_should_display_the_corresponding_article() {
         endUser.is_the_google_home_page();
-		endUser.enters("guava");
+		endUser.enters("pears");
         endUser.starts_search();
-		endUser.should_see_article_with_title_containing("guava");
+		endUser.should_see_article_with_title_containing("Pear");
     }
 
     @Test
@@ -39,7 +39,7 @@ public class SearchByFoodKeywordStoryTest {
         endUser.is_the_google_home_page();
 		endUser.enters("pineapples");
         endUser.starts_search();
-        endUser.should_see_article_with_title_containing("pineapples");
+        endUser.should_see_article_with_title_containing("Pineapple");
     }
 
     @Pending @Test
