@@ -1,0 +1,4 @@
+Learn the meaning of a word
+In order to learn the meaning of a word that I don't know
+As an online reader
+I want to be able to find out the meaning of the word
