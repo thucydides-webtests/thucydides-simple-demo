@@ -11,11 +11,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasItem;
 
-public class EndUserSteps extends ScenarioSteps {
+public class ReaderSteps extends ScenarioSteps {
 
     DictionaryPage dictionaryPage;
 
-    public EndUserSteps(Pages pages) {
+    public ReaderSteps(Pages pages) {
         super(pages);
         dictionaryPage = getPages().get(DictionaryPage.class);
     }
@@ -31,17 +31,18 @@ public class EndUserSteps extends ScenarioSteps {
     }
 
     @Step
-    public void should_see_definition_containing_words(String terms) {
-        assertThat(dictionaryPage.getDefinitions(), hasItem(containsString(terms)));
+    public void should_see_a_definition_containing(String terms) {
+        List displayedDefinitions = (List)dictionaryPage.getDefinitions();
+        assertThat(displayedDefinitions, hasItem(containsString(terms)));
     }
 
     @Step
-    public void is_the_home_page() {
+    public void consults_the_online_dictionary() {
         dictionaryPage.open();
     }
 
     @Step
-    public void looks_for(String term) {
+    public void looks_up_the_definition_of(String term) {
         enters(term);
         starts_search();
     }
