@@ -32,7 +32,7 @@ public class ReaderSteps extends ScenarioSteps {
 
     @Step
     public void should_see_a_definition_containing(String terms) {
-        List displayedDefinitions = (List)dictionaryPage.getDefinitions();
+        Iterable<String> displayedDefinitions = dictionaryPage.getDefinitions();
         assertThat(displayedDefinitions, hasItem(containsString(terms)));
     }
 
@@ -46,5 +46,4 @@ public class ReaderSteps extends ScenarioSteps {
         enters(term);
         starts_search();
     }
-
 }

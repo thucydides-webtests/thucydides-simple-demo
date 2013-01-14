@@ -1,34 +1,32 @@
 package net.thucydides.showcase.jbehave;
 
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.showcase.steps.ReaderSteps;
 import org.jbehave.core.annotations.Alias;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import net.thucydides.showcase.steps.EndUserSteps;
-
 public class DefinitionSteps {
 
     @Steps
-    EndUserSteps endUser;
+    ReaderSteps reader;
 
-    @Given("the user does not know the meaning of the word '<word>'")
-    @Alias("the user does not know the meaning of the word '$word'")
+    @Given("the user does not know the meaning of the word '$word'")
+    @Alias("the user does not know the meaning of the word '<word>'")
     public void givenTheUserDoesNotKnowAWord () {
-        endUser.is_the_home_page();
+        reader.consults_the_online_dictionary();
     }
 
-    @When("the user looks up the definition of the word '<word>'")
-    @Alias("the user looks up the definition of the word '$word'")
+    @When("the user looks up the definition of the word '$word'")
+    @Alias("the user looks up the definition of the word '<word>'")
     public void whenTheUserLooksUpTheDefinitionOf(String word) {
-        endUser.looks_for(word);
+        reader.looks_up_the_definition_of(word);
     }
 
-    @Then("they should obtain a definition containing the words '<definition>'")
-    @Alias("they should obtain a definition containing the words '$definition'")
+    @Then("they should obtain a definition containing the words '$definition'")
+    @Alias("they should obtain a definition containing the words '<definition>'")
     public void thenTheyShouldSeeADefinitionContainingTheWords(String definition) {
-        endUser.should_see_definition_containing_words(definition);
+        reader.should_see_a_definition_containing(definition);
     }
-
 }
