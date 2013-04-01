@@ -5,11 +5,8 @@ import net.thucydides.core.pages.Pages;
 import net.thucydides.core.steps.ScenarioSteps;
 import net.thucydides.showcase.pages.DictionaryPage;
 
-import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.hasItem;
+import static net.thucydides.showcase.fest.ContainsTermCondition.containsTerm;
+import static org.fest.assertions.Assertions.assertThat;
 
 public class ReaderSteps extends ScenarioSteps {
 
@@ -32,8 +29,7 @@ public class ReaderSteps extends ScenarioSteps {
 
     @Step
     public void should_see_a_definition_containing(String terms) {
-        Iterable<String> displayedDefinitions = dictionaryPage.getDefinitions();
-        assertThat(displayedDefinitions, hasItem(containsString(terms)));
+        assertThat(dictionaryPage.getDefinitions()).satisfies(containsTerm(terms));
     }
 
     @Step
@@ -45,5 +41,20 @@ public class ReaderSteps extends ScenarioSteps {
     public void looks_up_the_definition_of(String term) {
         enters(term);
         starts_search();
+    }
+
+    @Step
+    public void should_see_word_of_the_day() {
+        assertThat(dictionaryPage.getWordOfTheDay()).isNotEmpty();
+    }
+
+    @Step
+    public String word_of_the_day() {
+        return dictionaryPage.getWordOfTheDay();
+    }
+
+    @Step
+    public void refreshes_the_word_of_the_day() {
+        dictionaryPage.refreshWordOfTheDay();
     }
 }
