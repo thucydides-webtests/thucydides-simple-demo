@@ -34,3 +34,6 @@ And the user does not know how to spell
 When the user looks up the definition of the word 'bananna'
 Then the application should say "did you mean 'banana'?"
 
+Scenario: Lookup definitions in a file
+Given the user wants to know the meaning of some words
+Then he should be able to look them up

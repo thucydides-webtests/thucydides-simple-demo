@@ -41,6 +41,7 @@ public class ReaderSteps extends ScenarioSteps {
     public void looks_up_the_definition_of(String term) {
         enters(term);
         starts_search();
+
     }
 
     @Step

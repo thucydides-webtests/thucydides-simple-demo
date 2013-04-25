@@ -9,11 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-import static ch.lambdaj.Lambda.extract;
-import static ch.lambdaj.Lambda.on;
+import static org.fest.assertions.Assertions.assertThat;
 
 @DefaultUrl("http://en.wiktionary.org/wiki/Wiktionary:Main_Page")
 public class DictionaryPage extends PageObject {
@@ -26,6 +24,12 @@ public class DictionaryPage extends PageObject {
 
     @FindBy(id="WOTD-rss-title")
     private WebElementFacade wordOfTheDay;
+
+    @FindBy(css=".mp-index a")
+    private List<WebElement> indexEntries;
+
+    @FindBy(id="WOTD-rss-title")
+    private WebElement wordOfTheDay2;
 
     public DictionaryPage(WebDriver driver) {
         super(driver);
@@ -49,11 +53,21 @@ public class DictionaryPage extends PageObject {
     }
 
     public String getWordOfTheDay() {
+        assertThat(wordOfTheDay2).isNotNull();
         return wordOfTheDay.getText();
     }
 
     public void refreshWordOfTheDay() {
         find(By.id("mf-wotd")).then().findBy(By.linkText("refresh")).click();
+    }
+
+    public List<String> getIndexEntries() {
+        assertThat(indexEntries).isNotNull();
+        List<String> results = Lists.newArrayList();
+//        for(WebElement indexEntry : indexEntries) {
+//            results.add(indexEntry.getText());
+//        }
+        return results;
     }
 }
 
